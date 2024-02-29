@@ -1,15 +1,16 @@
 package com.plcoding.onlinetictactoe.di
 
-import com.plcoding.onlinetictactoe.data.KtorRealtimeMessagingClient
-import com.plcoding.onlinetictactoe.data.RealtimeMessagingClient
+import com.plcoding.onlinetictactoe.data.KtorMessagingClient
+import com.plcoding.onlinetictactoe.data.MessagingClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.features.logging.*
-import io.ktor.client.features.websocket.*
+import io.ktor.client.plugins.cookies.HttpCookies
+import io.ktor.client.plugins.logging.*
+import io.ktor.client.plugins.websocket.*
 import javax.inject.Singleton
 
 @Module
@@ -22,12 +23,13 @@ object AppModule {
         return HttpClient(CIO) {
             install(Logging)
             install(WebSockets)
+            install(HttpCookies)
         }
     }
 
     @Singleton
     @Provides
-    fun provideRealtimeMessagingClient(httpClient: HttpClient): RealtimeMessagingClient {
-        return KtorRealtimeMessagingClient(httpClient)
+    fun provideRealtimeMessagingClient(httpClient: HttpClient): MessagingClient {
+        return KtorMessagingClient(httpClient)
     }
 }

@@ -1,5 +1,5 @@
 package com.plcoding.onlinetictactoe.presentation
-
+/*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.size
@@ -182,4 +182,4 @@ fun TicTacToeFieldPreview() {
         onTapInField = { _, _ ->},
         modifier = Modifier.size(300.dp)
     )
-}
+}*/
